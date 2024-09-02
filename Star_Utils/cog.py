@@ -86,10 +86,10 @@ async def unsupported(ctx: commands.Context) -> None:
 
 
 class Cog(commands.Cog):
-    __authors__: typing.List[str] = ["AAA3A"]
+    __authors__: typing.List[str] = ["Star"]
     __version__: float = 1.0
     __commit__: str = ""
-    __repo_name__: str = "AAA3A-cogs"
+    __repo_name__: str = "Star-Cogs"
     __utils_version__: float = __utils_version__
 
     # bot: Red
@@ -183,41 +183,41 @@ class Cog(commands.Cog):
                 exc_info=e,
             )
         # Add SharedCog.
-        if self.qualified_name != "AAA3A_utils":
+        if self.qualified_name != "Star_Utils":
             try:
-                old_cog = await self.bot.remove_cog("AAA3A_utils")
-                AAA3A_utils = SharedCog(self.bot)
+                old_cog = await self.bot.remove_cog("Star_Utils")
+                Star_Utils = SharedCog(self.bot)
                 try:
                     if getattr(old_cog, "sentry", None) is not None:
-                        AAA3A_utils.sentry = old_cog.sentry
-                        AAA3A_utils.sentry.cog = AAA3A_utils
-                    AAA3A_utils.loops = old_cog.loops
+                        Star_Utils.sentry = old_cog.sentry
+                        Star_Utils.sentry.cog = Star_Utils
+                    Star_Utils.loops = old_cog.loops
                 except AttributeError:
                     pass
                 await self.bot.add_cog(
-                    AAA3A_utils, override=True
+                    Star_Utils, override=True
                 )  # `override` shouldn't be required...
             except discord.ClientException:  # Cog already loaded.
                 pass
             except Exception as e:
-                self.logger.debug("Error when adding the `AAA3A_utils` cog.", exc_info=e)
+                self.logger.debug("Error when adding the `Star_Utils` cog.", exc_info=e)
             else:
-                await AAA3A_utils.sentry.maybe_send_owners(self)
+                await Star_Utils.sentry.maybe_send_owners(self)
         # Count this cog (anonymous stats).
-        AAA3A_utils = self.bot.get_cog("AAA3A_utils")
-        counted_cogs = await AAA3A_utils.config.counted_cogs()
+        Star_Utils = self.bot.get_cog("Star_Utils")
+        counted_cogs = await Star_Utils.config.counted_cogs()
         if self.qualified_name not in counted_cogs:
             try:
                 async with aiohttp.ClientSession(raise_for_status=True) as session:
                     async with session.get(
-                        f"https://api.counterapi.dev/v1/AAA3A-cogs/{self.qualified_name}/up"
+                        f"https://api.counterapi.dev/v1/Star-Cogs/{self.qualified_name}/up"
                     ):
                         pass
             except Exception as e:
                 pass
             else:
                 counted_cogs.append(self.qualified_name)
-                await AAA3A_utils.config.counted_cogs.set(counted_cogs)
+                await Star_Utils.config.counted_cogs.set(counted_cogs)
         # Modify hybrid commands.
         await CogsUtils.add_hybrid_commands(bot=self.bot, cog=self)
 
@@ -226,7 +226,7 @@ class Cog(commands.Cog):
         CogsUtils.close_logger(self.logger)
         # Stop loops.
         for loop in self.loops.copy():
-            if self.qualified_name == "AAA3A_utils" and loop.name == "Sentry Helper":
+            if self.qualified_name == "Star_Utils" and loop.name == "Sentry Helper":
                 continue
             await loop.execute()  # Maybe is it a loop who save data... Might execute it a last time.
             loop.stop_all()
@@ -241,16 +241,16 @@ class Cog(commands.Cog):
                 pass
         self.views.clear()
         # Remove SharedCog.
-        AAA3A_utils: SharedCog = self.bot.get_cog("AAA3A_utils")
-        if AAA3A_utils is not None:
-            if AAA3A_utils.sentry is not None:
-                await AAA3A_utils.sentry.cog_unload(self)
+        Star_Utils: SharedCog = self.bot.get_cog("Star_Utils")
+        if Star_Utils is not None:
+            if Star_Utils.sentry is not None:
+                await Star_Utils.sentry.cog_unload(self)
             if not CogsUtils.at_least_one_cog_loaded(self.bot):
                 try:
-                    discord.utils.get(AAA3A_utils.loops, name="Sentry Helper").stop_all()
+                    discord.utils.get(Star_Utils.loops, name="Sentry Helper").stop_all()
                 except ValueError:
                     pass
-                await self.bot.remove_cog("AAA3A_utils")
+                await self.bot.remove_cog("Star_Utils")
 
     def format_help_for_context(self, ctx: commands.Context) -> str:
         """Thanks Simbad!"""
@@ -264,11 +264,11 @@ class Cog(commands.Cog):
             f"\n**Repo name**: {self.__repo_name__}"
             f"\n**Utils version**: {self.__utils_version__}"
         )
-        if self.qualified_name not in ("AAA3A_utils"):
+        if self.qualified_name not in ("Star_Utils"):
             text += (
                 "\n**Cog documentation**:"
-                f" https://aaa3a-cogs.readthedocs.io/en/latest/cog_{self.qualified_name.lower()}.html\n**Translate"
-                " my cogs**: https://crowdin.com/project/aaa3a-cogs"
+                f" https://Star-Cogs.readthedocs.io/en/latest/cog_{self.qualified_name.lower()}.html\n**Translate"
+                " my cogs**: https://crowdin.com/project/Star-Cogs"
             )
         return text
 
@@ -348,7 +348,7 @@ class Cog(commands.Cog):
         return context
 
     async def cog_command_error(self, ctx: commands.Context, error: Exception) -> None:
-        AAA3A_utils = ctx.bot.get_cog("AAA3A_utils")
+        Star_Utils = ctx.bot.get_cog("Star_Utils")
         is_command_error = isinstance(
             error, (commands.CommandInvokeError, commands.HybridCommandError)
         )
@@ -362,9 +362,9 @@ class Cog(commands.Cog):
 
         if is_command_error:
             uuid = uuid4().hex
-            no_sentry = AAA3A_utils is None or getattr(AAA3A_utils, "sentry", None) is None
+            no_sentry = Star_Utils is None or getattr(Star_Utils, "sentry", None) is None
             if not no_sentry:
-                AAA3A_utils.sentry.last_errors[uuid] = {"ctx": ctx, "error": error}
+                Star_Utils.sentry.last_errors[uuid] = {"ctx": ctx, "error": error}
             if isinstance(ctx.command, discord.ext.commands.HybridCommand):
                 _type = "[hybrid|text]" if ctx.interaction is None else "[hybrid|slash]"
             elif ctx.interaction is not None:
@@ -384,13 +384,13 @@ class Cog(commands.Cog):
                 message = message.replace("{command}", ctx.command.qualified_name)
             if (
                 not no_sentry
-                and getattr(AAA3A_utils.sentry, "display_sentry_manual_command", True)
-                and await AAA3A_utils.senderrorwithsentry.can_run(ctx)
-                and not getattr(AAA3A_utils.senderrorwithsentry, "__is_dev__", False)
+                and getattr(Star_Utils.sentry, "display_sentry_manual_command", True)
+                and await Star_Utils.senderrorwithsentry.can_run(ctx)
+                and not getattr(Star_Utils.senderrorwithsentry, "__is_dev__", False)
             ):
                 message += "\n" + inline(
                     "You can send this error to the developer by running the following"
-                    f" command:\n{ctx.prefix}AAA3A_utils senderrorwithsentry {uuid}"
+                    f" command:\n{ctx.prefix}Star_Utils senderrorwithsentry {uuid}"
                 )
             await ctx.send(message)
             asyncio.create_task(ctx.bot._delete_delay(ctx))
@@ -405,7 +405,7 @@ class Cog(commands.Cog):
             exception_log = CogsUtils.replace_var_paths(exception_log)
             ctx.bot._last_exception = exception_log
             if not no_sentry:
-                await AAA3A_utils.sentry.send_command_error(ctx, error)
+                await Star_Utils.sentry.send_command_error(ctx, error)
         elif isinstance(error, commands.UserFeedbackCheckFailure):
             if error.message:
                 message = error.message
