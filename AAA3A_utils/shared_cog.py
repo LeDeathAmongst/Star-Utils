@@ -15,7 +15,7 @@ from io import StringIO
 from pathlib import Path
 
 import pip
-from AAA3A_utils.cog import Cog
+from Star_Utils.cog import Cog
 from redbot import version_info as red_version_info
 from redbot.cogs.downloader.converters import InstalledCog
 from redbot.cogs.downloader.repo_manager import Repo
@@ -67,15 +67,15 @@ class StrConverter(commands.Converter):
         return argument
 
 
-class SharedCog(Cog, name="AAA3A_utils"):
-    """Commands to manage all the cogs in AAA3A-cogs repo!"""
+class SharedCog(Cog, name="Star_Utils"):
+    """Commands to manage all the cogs in Star-Cogs repo!"""
 
     def __init__(self, bot: Red) -> None:
         super().__init__(bot=bot)
 
         self.config: Config = Config.get_conf(
             self,
-            identifier=205192943327321000143939875896557571750,  # int(hashlib.md5(("AAA3A-cogs").encode()).hexdigest(), 16)
+            identifier=205192943327321000143939875896557571750,  # int(hashlib.md5(("Star-Cogs").encode()).hexdigest(), 16)
             force_registration=True,
             cog_name=self.qualified_name,
         )
@@ -105,20 +105,20 @@ class SharedCog(Cog, name="AAA3A_utils"):
         return {}
 
     @commands.is_owner()
-    @commands.hybrid_group(name="aaa3a_utils", aliases=["AAA3A_utils"], hidden=True)
-    async def AAA3A_utils(self, ctx: commands.Context) -> None:
-        """All commands to manage all the cogs from AAA3A-cogs repo."""
+    @commands.hybrid_group(name="star_utils", aliases=["Star_Utils"], hidden=True)
+    async def Star_Utils(self, ctx: commands.Context) -> None:
+        """All commands to manage all the cogs from Star-Cogs repo."""
         pass
 
     @commands.is_owner()
-    @AAA3A_utils.command()
+    @Star_Utils.command()
     async def getlogs(self, ctx: commands.Context, cog: str, level: str = "all") -> None:
-        """Get logs for a cog from AAA3A-cogs"""
+        """Get logs for a cog from Star-Cogs"""
         cog = ctx.bot.get_cog(cog)
         if cog is None:
             raise commands.UserFeedbackCheckFailure(_("This cog is not installed or loaded."))
-        if getattr(cog, "__repo_name__", None) != "AAA3A-cogs":
-            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from AAA3A-cogs."))
+        if getattr(cog, "__repo_name__", None) != "Star-Cogs":
+            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from Star-Cogs."))
         if cog.logs == {}:
             raise commands.UserFeedbackCheckFailure(_("This cog does not have any log saved."))
         if level == "stats":
@@ -165,28 +165,28 @@ class SharedCog(Cog, name="AAA3A_utils"):
         await Menu(pages=result).start(ctx)
 
     @commands.is_owner()
-    @AAA3A_utils.command()
+    @Star_Utils.command()
     async def getdebugloopsstatus(self, ctx: commands.Context, cog: str) -> None:
-        """Get debug loops status for a cog from AAA3A-cogs."""
+        """Get debug loops status for a cog from Star-Cogs."""
         cog = ctx.bot.get_cog(cog)
         if cog is None:
             raise commands.UserFeedbackCheckFailure(_("This cog is not installed or loaded."))
-        if getattr(cog, "__repo_name__", None) != "AAA3A-cogs":
-            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from AAA3A-cogs."))
+        if getattr(cog, "__repo_name__", None) != "Star-Cogs":
+            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from Star-Cogs."))
         embeds = [loop.get_debug_embed() for loop in cog.loops]
         await Menu(pages=embeds).start(ctx)
 
     @commands.is_owner()
-    @AAA3A_utils.command(aliases=["clearconfig"])
+    @Star_Utils.command(aliases=["clearconfig"])
     async def resetconfig(
         self, ctx: commands.Context, cog: str, confirmation: bool = False
     ) -> None:
-        """Reset Config for a cog from AAA3A-cogs."""
+        """Reset Config for a cog from Star-Cogs."""
         cog = ctx.bot.get_cog(cog)
         if cog is None:
             raise commands.UserFeedbackCheckFailure(_("This cog is not installed or loaded."))
-        if getattr(cog, "__repo_name__", None) != "AAA3A-cogs":
-            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from AAA3A-cogs."))
+        if getattr(cog, "__repo_name__", None) != "Star-Cogs":
+            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from Star-Cogs."))
         if not hasattr(cog, "config") or not isinstance(getattr(cog, "config"), Config):
             raise commands.UserFeedbackCheckFailure(_("This cog doesn't use the Config."))
         if not confirmation:
@@ -200,11 +200,11 @@ class SharedCog(Cog, name="AAA3A_utils"):
         await getattr(cog, "config").clear_all()
 
     @commands.is_owner()
-    @AAA3A_utils.command(hidden=True)
+    @Star_Utils.command(hidden=True)
     async def telemetrywithsentry(self, ctx: commands.Context, state: bool) -> None:
-        """Enable or disable Telemetry with Sentry for all cogs from AAA3A-cogs.
+        """Enable or disable Telemetry with Sentry for all cogs from Star-Cogs.
 
-        More details: https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html
+        More details: https://Star-Cogs.readthedocs.io/en/latest/repo_telemetry.html
         """
         await self.config.sentry.sentry_enabled.set(state)
         self.sentry.sentry_enabled = state
@@ -213,9 +213,9 @@ class SharedCog(Cog, name="AAA3A_utils"):
         )
 
     @commands.is_owner()
-    @AAA3A_utils.command(hidden=False)
+    @Star_Utils.command(hidden=False)
     async def displaysentrymanualcommand(self, ctx: commands.Context, state: bool) -> None:
-        """Enable or disable displaying the command `[p]AAA3A_utils senderrorwithsentry` in commands errors.
+        """Enable or disable displaying the command `[p]Star_Utils senderrorwithsentry` in commands errors.
 
         Defaults is `True`.
         """
@@ -223,11 +223,11 @@ class SharedCog(Cog, name="AAA3A_utils"):
         self.sentry.display_sentry_manual_command = not self.sentry.sentry_enabled and state
 
     @commands.is_owner()
-    @AAA3A_utils.command()
+    @Star_Utils.command()
     async def senderrorwithsentry(self, ctx: commands.Context, error: str) -> None:
-        """Send a recent error to the developer of AAA3A's cogs with Sentry (use the code given when the error has been triggered).
+        """Send a recent error to the developer of Star's cogs with Sentry (use the code given when the error has been triggered).
 
-        More details: https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html
+        More details: https://Star-Cogs.readthedocs.io/en/latest/repo_telemetry.html
         """
         if error not in self.sentry.last_errors:
             raise commands.UserFeedbackCheckFailure(_("This error does not exist."))
@@ -242,9 +242,9 @@ class SharedCog(Cog, name="AAA3A_utils"):
         )
 
     @commands.is_owner()
-    @AAA3A_utils.command()
+    @Star_Utils.command()
     async def replacementvarpaths(self, ctx: commands.Context, state: bool) -> None:
-        """Replace various var paths in texts sent by cog from AAA3A-cogs.
+        """Replace various var paths in texts sent by cog from Star-Cogs.
 
         Defaults is `True`.
         """
@@ -252,7 +252,7 @@ class SharedCog(Cog, name="AAA3A_utils"):
         cogsutils.replacement_var_paths = state
 
     @commands.is_owner()
-    @AAA3A_utils.command()
+    @Star_Utils.command()
     async def flags(self, ctx: commands.Context, *, content: str) -> None:
         """Use any command with flags."""
         msg: discord.Message = ctx.message
@@ -397,7 +397,7 @@ class SharedCog(Cog, name="AAA3A_utils"):
             pass
 
     @commands.is_owner()
-    @AAA3A_utils.command()
+    @Star_Utils.command()
     async def getallfor(
         self,
         ctx: commands.Context,
@@ -417,7 +417,7 @@ class SharedCog(Cog, name="AAA3A_utils"):
             command = None
             check_updates = False
         if repo is not None:
-            if not repo.lower() == "AAA3A".lower():
+            if not repo.lower() == "Star".lower():
                 try:
                     repo = await Repo.convert(ctx, repo)
                 except commands.CommandError as e:
@@ -458,14 +458,14 @@ class SharedCog(Cog, name="AAA3A_utils"):
         loaded_cogs = [c.lower() for c in ctx.bot.cogs]
         if repo is not None:
             rp = _repos[0]
-            if not isinstance(rp, Repo) and not "AAA3A".lower() in rp.lower():
+            if not isinstance(rp, Repo) and not "Star".lower() in rp.lower():
                 raise commands.UserFeedbackCheckFailure(
                     _("Repo by the name `{rp}` does not exist.").format(rp=rp)
                 )
             if not isinstance(repo, Repo):
                 found = False
                 for r in await downloader_cog.config.installed_cogs():
-                    if "AAA3A".lower() in str(r).lower():
+                    if "Star".lower() in str(r).lower():
                         _repos = [downloader_cog._repo_manager.get_repo(str(r))]
                         found = True
                         break
