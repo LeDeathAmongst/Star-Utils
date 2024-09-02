@@ -1,6 +1,5 @@
-# AAA3A_utils - Shared tools
-
-This is a Python package made for [AAA3A-cogs](https://github.com/AAA3A-AAA3A/AAA3A-cogs).
+# Star_Utils - Shared tools
+### Made Initially by AAA3A for [AAA3A-cogs](https://github.com/AAA3A-AAA3A/AAA3A-cogs), modified by Star for [Star-Cogs](https://github.com/LeDeathAmongst/Star-Cogs)
 
 The "AAA3A_utils" sub-folder is a PIP package, automatically downloaded by all my cogs.
 
@@ -13,5 +12,5 @@ Thanks to Vexed for the code and the documentation to use Telemetry with Sentry 
 Type the following command in your console:
 
 ```
-python -m pip install git+https://github.com/AAA3A-AAA3A/AAA3A_utils.git
+python -m pip install git+https://github.com/LeDeathAmongst/AAA3A_utils.git
 ```
