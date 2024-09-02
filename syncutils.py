@@ -15,12 +15,12 @@ VERSION = 6.8
 BASE_PATH = Path(os.environ["USERPROFILE"]) / "Documents" / "GitHub"
 
 if VERSION is None:
-    utils_repo_clone_location = BASE_PATH / "AAA3A_utils_clone_for_sync"
+    utils_repo_clone_location = BASE_PATH / "Star_Utils_clone_for_sync"
     utils_repo = Repo.clone_from(
-        "https://github.com/AAA3A-AAA3A/AAA3A_utils.git", utils_repo_clone_location
+        "https://github.com/LeDeathAmongst/Star-Utils.git", utils_repo_clone_location
     )
 
-    utils_location = utils_repo_clone_location / "AAA3A_utils"
+    utils_location = utils_repo_clone_location / "Star-Utils"
     commit = utils_repo.head.commit
 
     README_MD_TEXT = """## My utils
@@ -45,12 +45,12 @@ if VERSION is None:
     with open(utils_location / "commit.json", "w") as fp:
         fp.write(json.dumps({"latest_commit": str(commit)}))
 else:
-    with open(BASE_PATH / "AAA3A_utils" / "AAA3A_utils" / "__version__.py", "w") as fp:
+    with open(BASE_PATH / "Star-Utils" / "Star-Utils" / "__version__.py", "w") as fp:
         fp.write(f"__version__ = {VERSION}\n")
 
 all_cogs = [
     path.name
-    for path in (BASE_PATH / "AAA3A-cogs").iterdir()
+    for path in (BASE_PATH / "Star-Cogs").iterdir()
     if (
         path.is_dir()
         and not path.name.startswith((".", "_"))
@@ -60,14 +60,14 @@ all_cogs = [
 cog_folders = [cog.lower() for cog in all_cogs]
 for cog in cog_folders:
     destination = (
-        BASE_PATH / "AAA3A-cogs" / cog / "AAA3A_utils"
+        BASE_PATH / "Star-Cogs" / cog / "Star-Utils"
     )
     if destination.exists():
         shutil.rmtree(destination)
     if VERSION is None:
         shutil.copytree(utils_location, destination)
     else:
-        destination = BASE_PATH / "AAA3A-cogs" / cog
+        destination = BASE_PATH / "Star-Cogs" / cog
         with open(destination / "utils_version.json", "w") as fp:
             fp.write(json.dumps({"needed_utils_version": VERSION}))
 
