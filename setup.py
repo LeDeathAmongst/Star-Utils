@@ -16,21 +16,21 @@ __version__ = float(
 )
 
 setuptools.setup(
-    name="AAA3A_utils",
+    name="Star-Utils",
     version=str(__version__),
-    author="AAA3A",
+    author="Rosie",
     author_email=None,
-    description="Utils for AAA3A-cogs.",
+    description="Utils for Star-Cogs.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/AAA3A-AAA3A/AAA3A_utils",
+    url="https://github.com/LeDeathAmongst/Star-Utils",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: MIT",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.8.1",
+    python_requires=">=3.9.1",
     install_requires=[
         "sentry_sdk",
         "colorama",
