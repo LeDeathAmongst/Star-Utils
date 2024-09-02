@@ -22,7 +22,7 @@ IP_V4_REGEX = (
 IP_V6_REGEX = r"(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
 
 SENTRY_DSN = (
-    "https://d67f82abaf0a4b4eb95016f4aa414e5d@o4504401396695040.ingest.sentry.io/4504401415897088"
+    "https://abed42da462721769fca05c690d2cfda@o4507885141753856.ingest.us.sentry.io/4507885144637440"
 )
 
 # Thanks to Vexed for all this file (https://github.com/Vexed01/vex-cog-utils/blob/ba8adb3d270c968bc7ff3e3b977ac90ff752dca3/vexcogutils/sentry.py)!
@@ -44,7 +44,7 @@ SENTRY_DSN = (
 #   only send 1 DM (or at least that's the plan...)
 #
 # I recommend anyone looking at this also takes a look at the Technical Details section of
-# https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html
+# https://Star-cogs.readthedocs.io/en/latest/repo_telemetry.html
 #
 # """
 
@@ -54,35 +54,35 @@ def _(untranslated: str) -> str:
 
 
 SENTRY_MASTER_MSG = _(
-    "Hey there! This looks like the first time you're using AAA3A's cogs (or you just updated to a"
+    "Hey there! This looks like the first time you're using Star's cogs (or you just updated to a"
     " version which supports this). To help make this cog, and all my others, as good and bug-free"
     " as possible, I have **opt-in** telemetry and error reporting __which affects all of my"
-    " (github.com/AAA3A-AAA3A's) cogs__ on the AAA3A-cogs repository, using Sentry. The telemetry"
+    " (github.com/LeDeathAmongst's) cogs__ on the Star-Cogs repository, using Sentry. The telemetry"
     " consists of data on the cog release and performance data of backgroup tasks and loops (if"
     " applicable), and error reporting means that if something goes wrong the error and some"
     " associated data will be automatically sent to me so I can fix it quickly.\n\nA best effort"
     " is made to ensure no sensitive data is transmitted. For more information, including some"
     " technical details, visit"
-    " <https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html>\n\n**If you would like to"
+    " <https://Star-cogs.readthedocs.io/en/latest/repo_telemetry.html>\n\n**If you would like to"
     " opt-in to telemetry and error reporting, and help me develop my cogs, run the command"
-    " `[p]AAA3A_utils telemetrywithsentry True`. `[p]` is your prefix.**\nNo data is collected"
+    " `[p]star_utils telemetrywithsentry True`. `[p]` is your prefix.**\nNo data is collected"
     " relating to command usage."
 )
 SENTRY_REMINDER_ON = _(
-    "Hey there! You just installed AAA3A's {} cog. This is a reminder that you previously enabled"
+    "Hey there! You just installed Star's {} cog. This is a reminder that you previously enabled"
     " telemetry and error reporting, which applies to all of my cogs, and this one is no"
     " different.\n\nI would like to emphasise again that a best effort it made to remove sensitive"
-    " data. You can see <https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html> for more"
-    " details and change your choice at any time with the `[p]AAA3A_utils telemetrywithsentry"
+    " data. You can see <https://Star-cogs.readthedocs.io/en/latest/repo_telemetry.html> for more"
+    " details and change your choice at any time with the `[p]Star_utils telemetrywithsentry"
     " False` command, applying to all my cogs."
 )
 SENTRY_REMINDER_OFF = _(
-    "Hey there! You just installed AAA3A's {} cog. This is a reminder that you previously chose"
+    "Hey there! You just installed Star's {} cog. This is a reminder that you previously chose"
     " not to enable telemetry and error reporting, which is also available in this cog. I hope you"
     " don't mind this reminder.\n\nI would like to emphasise again that a best effort it made to"
     " remove sensitive data. You can see"
-    " <https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html> for more details and"
-    " change your choice at any time with the `[p]AAA3A_utils telemetrywithsentry True` command,"
+    " <https://Star-cogs.readthedocs.io/en/latest/repo_telemetry.html> for more details and"
+    " change your choice at any time with the `[p]Star_utils telemetrywithsentry True` command,"
     " applying to all my cogs."
 )
 
@@ -91,7 +91,7 @@ __all__ = ["SentryHelper"]
 
 class SentryHelper:
     def __init__(self, bot: Red, cog: commands.Cog) -> None:
-        if cog.qualified_name != "AAA3A_utils":
+        if cog.qualified_name != "Star_Utils":
             raise ValueError(cog.qualified_name)
         self.bot: Red = bot
         self.cog: commands.Cog = cog
@@ -324,7 +324,7 @@ class SentryHelper:
             before_send=self.remove_sensitive_data,
             before_breadcrumb=self.remove_sensitive_data,
             release=(
-                f"AAA3A-cogs|{cog.qualified_name}@{getattr(cog, '__version__', 1.0)}|{getattr(cog, '__commit__', '')}"
+                f"Star-Cogs|{cog.qualified_name}@{getattr(cog, '__version__', 1.0)}|{getattr(cog, '__commit__', '')}"
             ),
             debug=False,
             max_breadcrumbs=25,
