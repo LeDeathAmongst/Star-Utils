@@ -68,14 +68,14 @@ class StrConverter(commands.Converter):
 
 
 class SharedCog(Cog, name="Star_Utils"):
-    """Commands to manage all the cogs in Star-Cogs repo!"""
+    """Commands to manage all the cogs in StarCogs repo!"""
 
     def __init__(self, bot: Red) -> None:
         super().__init__(bot=bot)
 
         self.config: Config = Config.get_conf(
             self,
-            identifier=205192943327321000143939875896557571750,  # int(hashlib.md5(("Star-Cogs").encode()).hexdigest(), 16)
+            identifier=205192943327321000143939875896557571750,  # int(hashlib.md5(("StarCogs").encode()).hexdigest(), 16)
             force_registration=True,
             cog_name=self.qualified_name,
         )
@@ -107,18 +107,18 @@ class SharedCog(Cog, name="Star_Utils"):
     @commands.is_owner()
     @commands.hybrid_group(name="star_utils", aliases=["Star_Utils"], hidden=True)
     async def Star_Utils(self, ctx: commands.Context) -> None:
-        """All commands to manage all the cogs from Star-Cogs repo."""
+        """All commands to manage all the cogs from StarCogs repo."""
         pass
 
     @commands.is_owner()
     @Star_Utils.command()
     async def getlogs(self, ctx: commands.Context, cog: str, level: str = "all") -> None:
-        """Get logs for a cog from Star-Cogs"""
+        """Get logs for a cog from StarCogs"""
         cog = ctx.bot.get_cog(cog)
         if cog is None:
             raise commands.UserFeedbackCheckFailure(_("This cog is not installed or loaded."))
-        if getattr(cog, "__repo_name__", None) != "Star-Cogs":
-            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from Star-Cogs."))
+        if getattr(cog, "__repo_name__", None) != "StarCogs":
+            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from StarCogs."))
         if cog.logs == {}:
             raise commands.UserFeedbackCheckFailure(_("This cog does not have any log saved."))
         if level == "stats":
@@ -167,12 +167,12 @@ class SharedCog(Cog, name="Star_Utils"):
     @commands.is_owner()
     @Star_Utils.command()
     async def getdebugloopsstatus(self, ctx: commands.Context, cog: str) -> None:
-        """Get debug loops status for a cog from Star-Cogs."""
+        """Get debug loops status for a cog from StarCogs."""
         cog = ctx.bot.get_cog(cog)
         if cog is None:
             raise commands.UserFeedbackCheckFailure(_("This cog is not installed or loaded."))
-        if getattr(cog, "__repo_name__", None) != "Star-Cogs":
-            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from Star-Cogs."))
+        if getattr(cog, "__repo_name__", None) != "StarCogs":
+            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from StarCogs."))
         embeds = [loop.get_debug_embed() for loop in cog.loops]
         await Menu(pages=embeds).start(ctx)
 
@@ -181,12 +181,12 @@ class SharedCog(Cog, name="Star_Utils"):
     async def resetconfig(
         self, ctx: commands.Context, cog: str, confirmation: bool = False
     ) -> None:
-        """Reset Config for a cog from Star-Cogs."""
+        """Reset Config for a cog from StarCogs."""
         cog = ctx.bot.get_cog(cog)
         if cog is None:
             raise commands.UserFeedbackCheckFailure(_("This cog is not installed or loaded."))
-        if getattr(cog, "__repo_name__", None) != "Star-Cogs":
-            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from Star-Cogs."))
+        if getattr(cog, "__repo_name__", None) != "StarCogs":
+            raise commands.UserFeedbackCheckFailure(_("This cog is not a cog from StarCogs."))
         if not hasattr(cog, "config") or not isinstance(getattr(cog, "config"), Config):
             raise commands.UserFeedbackCheckFailure(_("This cog doesn't use the Config."))
         if not confirmation:
@@ -202,9 +202,9 @@ class SharedCog(Cog, name="Star_Utils"):
     @commands.is_owner()
     @Star_Utils.command(hidden=True)
     async def telemetrywithsentry(self, ctx: commands.Context, state: bool) -> None:
-        """Enable or disable Telemetry with Sentry for all cogs from Star-Cogs.
+        """Enable or disable Telemetry with Sentry for all cogs from StarCogs.
 
-        More details: https://Star-Cogs.readthedocs.io/en/latest/repo_telemetry.html
+        More details: https://StarCogs.readthedocs.io/en/latest/repo_telemetry.html
         """
         await self.config.sentry.sentry_enabled.set(state)
         self.sentry.sentry_enabled = state
@@ -227,7 +227,7 @@ class SharedCog(Cog, name="Star_Utils"):
     async def senderrorwithsentry(self, ctx: commands.Context, error: str) -> None:
         """Send a recent error to the developer of Star's cogs with Sentry (use the code given when the error has been triggered).
 
-        More details: https://Star-Cogs.readthedocs.io/en/latest/repo_telemetry.html
+        More details: https://StarCogs.readthedocs.io/en/latest/repo_telemetry.html
         """
         if error not in self.sentry.last_errors:
             raise commands.UserFeedbackCheckFailure(_("This error does not exist."))
@@ -244,7 +244,7 @@ class SharedCog(Cog, name="Star_Utils"):
     @commands.is_owner()
     @Star_Utils.command()
     async def replacementvarpaths(self, ctx: commands.Context, state: bool) -> None:
-        """Replace various var paths in texts sent by cog from Star-Cogs.
+        """Replace various var paths in texts sent by cog from StarCogs.
 
         Defaults is `True`.
         """
