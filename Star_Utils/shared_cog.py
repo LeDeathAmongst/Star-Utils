@@ -446,7 +446,7 @@ class SharedCog(Cog, name="Star_Utils"):
             if CogsUtils.ConfirmationAsk(
                 ctx,
                 _(
-                    "The Downloader cog cog is not loaded. I can't continue. Do you want me to"
+                    "The Downloader cog is not loaded. I can't continue. Do you want me to"
                     " do it?"
                 ),
             ):
