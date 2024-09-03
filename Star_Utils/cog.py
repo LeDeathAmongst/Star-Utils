@@ -268,7 +268,7 @@ class Cog(commands.Cog):
             text += (
                 "\n**Cog documentation**:"
                 f" http://docs.prismbot.icu\n**Translate"
-                " my cogs**: https://crowdin.com/project/StarCogs/"
+                " my cogs**: https://crowdin.com/project/Star-Cogs/"
             )
         return text
 
