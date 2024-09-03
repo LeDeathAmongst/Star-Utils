@@ -33,7 +33,7 @@ replacement_var_paths: bool = True
 
 
 class CogsUtils:
-    """Utils for AAA3A-cogs!"""
+    """Utils for StarCogs!"""
 
     # def __init__(
     #     self, cog: typing.Optional[commands.Cog] = None, bot: typing.Optional[Red] = None
@@ -116,7 +116,7 @@ class CogsUtils:
             return (
                 logging.getLogger(name)
                 if name.startswith("red.")
-                else logging.getLogger(f"red.AAA3A-cogs.{name}")
+                else logging.getLogger(f"red.StarCogs.{name}")
             )
 
         logger = (
@@ -880,7 +880,7 @@ class CogsUtils:
         for cog in bot.cogs.values():
             if cog.qualified_name in ("CogGuide"):
                 continue
-            if getattr(cog, "__repo_name__", None) == "AAA3A-cogs":
+            if getattr(cog, "__repo_name__", None) == "StarCogs":
                 cogs[cog.qualified_name] = cog
         return cogs
 
