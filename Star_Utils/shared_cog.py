@@ -535,7 +535,8 @@ class SharedCog(Cog, name="Star_Utils"):
             )
             or "None"
         )
-        uptime = humanize_timedelta(timedelta=datetime.datetime.utcnow() - ctx.bot.uptime)
+        current_time = datetime.utcnow().replace(tzinfo=timezone.utc)
+        uptime = humanize_timedelta(timedelta=current_time - ctx.bot.uptime)
 
         async def can_run(command):
             try:
