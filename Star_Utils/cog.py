@@ -267,8 +267,8 @@ class Cog(commands.Cog):
         if self.qualified_name not in ("Star_Utils"):
             text += (
                 "\n**Cog documentation**:"
-                f" https://Star-Cogs.readthedocs.io/en/latest/cog_{self.qualified_name.lower()}.html\n**Translate"
-                " my cogs**: https://crowdin.com/project/Star-Cogs"
+                f" http://docs.prismbot.icu\n**Translate"
+                " my cogs**: https://crowdin.com/project/star-cogs/"
             )
         return text
 
