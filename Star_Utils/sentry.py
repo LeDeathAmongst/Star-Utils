@@ -19,46 +19,21 @@ SNOWFLAKE_REGEX = r"\b\d{17,20}\b"
 IP_V4_REGEX = (
     r"(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"
 )
-IP_V6_REGEX = r"(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
+IP_V6_REGEX = r"(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0-1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0-1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0-1}[0-9]){0,1}[0-9]))"
 
 SENTRY_DSN = (
     "https://463fef380c8d6f900e3deec882110429@o4507885141753856.ingest.us.sentry.io/4507887488598016"
 )
 
-# Thanks to Vexed for all this file (https://github.com/Vexed01/vex-cog-utils/blob/ba8adb3d270c968bc7ff3e3b977ac90ff752dca3/vexcogutils/sentry.py)!
-
-# This is copied from the source code, but maybe true soon.
-""" # SENTRY IS OPT-IN
-#
-# When a bot owner installes their first cog of mine, they will recieve a DM asking if they would
-# like to start sending basic session data and error reporting, which applies to all of my cogs.
-# They will then recieve a DM reminding then of their choice whenever they install one of my cogs.
-#
-# There are two types of messages sent to owners: "master" and "reminder":
-# - The "master" message is the first message to the owner when they first load one of my cogs.
-# - A "reminder" message will be sent whenever one of my cogs is loaded for the first time AND a
-#   master message was sent previously. If Sentry is enabled, these will be sent every time a new
-#   cog of mine is loaded. If Sentry is disabled, these will only be sent once per loading of a new
-#   cog of mine IF it is the first cog loaded since last bot restart.
-#   This has the added bonus of meaning that when this will be rolled out to all my cogs it will
-#   only send 1 DM (or at least that's the plan...)
-#
-# I recommend anyone looking at this also takes a look at the Technical Details section of
-# https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html
-#
-# """
-
-
 def _(untranslated: str) -> str:
     return untranslated
-
 
 SENTRY_MASTER_MSG = _(
     "Hey there! This looks like the first time you're using Star's cogs (or you just updated to a"
     " version which supports this). To help make this cog, and all my others, as good and bug-free"
     " as possible, I have **opt-in** telemetry and error reporting __which affects all of my"
     " (github.com/LeDeathAmongst's) cogs__ on the Star-Cogs repository, using Sentry. The telemetry"
-    " consists of data on the cog release and performance data of backgroup tasks and loops (if"
+    " consists of data on the cog release and performance data of background tasks and loops (if"
     " applicable), and error reporting means that if something goes wrong the error and some"
     " associated data will be automatically sent to me so I can fix it quickly.\n\nA best effort"
     " is made to ensure no sensitive data is transmitted. For more information, including some"
@@ -71,7 +46,7 @@ SENTRY_MASTER_MSG = _(
 SENTRY_REMINDER_ON = _(
     "Hey there! You just installed Star's {} cog. This is a reminder that you previously enabled"
     " telemetry and error reporting, which applies to all of my cogs, and this one is no"
-    " different.\n\nI would like to emphasise again that a best effort it made to remove sensitive"
+    " different.\n\nI would like to emphasize again that a best effort it made to remove sensitive"
     " data. You can see <https://Star-cogs.readthedocs.io/en/latest/repo_telemetry.html> for more"
     " details and change your choice at any time with the `[p]Star_utils telemetrywithsentry"
     " False` command, applying to all my cogs."
@@ -79,7 +54,7 @@ SENTRY_REMINDER_ON = _(
 SENTRY_REMINDER_OFF = _(
     "Hey there! You just installed Star's {} cog. This is a reminder that you previously chose"
     " not to enable telemetry and error reporting, which is also available in this cog. I hope you"
-    " don't mind this reminder.\n\nI would like to emphasise again that a best effort it made to"
+    " don't mind this reminder.\n\nI would like to emphasize again that a best effort it made to"
     " remove sensitive data. You can see"
     " <https://Star-cogs.readthedocs.io/en/latest/repo_telemetry.html> for more details and"
     " change your choice at any time with the `[p]Star_utils telemetrywithsentry True` command,"
@@ -87,7 +62,6 @@ SENTRY_REMINDER_OFF = _(
 )
 
 __all__ = ["SentryHelper"]
-
 
 class SentryHelper:
     def __init__(self, bot: Red, cog: commands.Cog) -> None:
@@ -139,7 +113,6 @@ class SentryHelper:
         self.display_sentry_manual_command = not self.sentry_enabled and (
             await self.config.sentry.display_sentry_manual_command()
         )
-        # always set it, really doesn't do much
         uuid = await self.config.sentry.uuid()
         if uuid is None:
             uuid = str(uuid4())
@@ -178,18 +151,18 @@ class SentryHelper:
             else:
                 return False
             message = f"Error in {_type} command '{ctx.command.qualified_name}'."
-            with hub:
+            with sentry_sdk.isolation_scope() as scope:
                 hub.add_breadcrumb(category="command", message=message)
-                hub.scope.set_extra("user_permissions", ctx.permissions)
-                hub.scope.set_extra("user_permissions_dict", dict(ctx.permissions))
-                hub.scope.set_extra("bot_permissions", ctx.bot_permissions)
-                hub.scope.set_extra("bot_permissions_dict", dict(ctx.bot_permissions))
+                scope.set_extra("user_permissions", ctx.permissions)
+                scope.set_extra("user_permissions_dict", dict(ctx.permissions))
+                scope.set_extra("bot_permissions", ctx.bot_permissions)
+                scope.set_extra("bot_permissions_dict", dict(ctx.bot_permissions))
                 try:
                     e = error.original  # type:ignore
                 except AttributeError:
                     e = error
                 event_id = hub.capture_exception(e)
-                hub.scope._extras.clear()
+                scope._extras.clear()
             return event_id
         except Exception as e:
             if manually:
@@ -286,7 +259,7 @@ class SentryHelper:
             hub.start_session()
 
     async def disable_sentry(self) -> None:
-        """Enable Sentry telemetry and error reporting."""
+        """Disable Sentry telemetry and error reporting."""
         await self.config.sentry.sentry_enabled.set(False)
         self.sentry_enabled = False
         self.dont_send_reminders = True
@@ -297,7 +270,7 @@ class SentryHelper:
     async def get_sentry_hub(
         self, cog: commands.Cog, force: typing.Optional[bool] = False
     ) -> sentry_sdk.Hub:
-        """Get a Sentry Hub and Client for a DSN. Each cog should have it's own hub.
+        """Get a Sentry Hub and Client for a DSN. Each cog should have its own hub.
         Returns
         -------
         Hub
@@ -316,8 +289,6 @@ class SentryHelper:
                 cog.__commit__ = commit
             except Exception:
                 pass
-        # not using sentry_sdk.init so other don't interfear with other CCs/cogs/packages
-        # from https://github.com/getsentry/sentry-python/issues/610
         client = sentry_sdk.Client(
             dsn=SENTRY_DSN,
             traces_sample_rate=0.005,
@@ -368,7 +339,7 @@ class SentryHelper:
             or not hasattr(self.cog, "telemetrywithsentry")
             or getattr(self.cog.telemetrywithsentry, "__is_dev__", False)
         ):
-            return  # Not send automatically errors tp Sentry for the moment.
+            return  # Not send automatically errors to Sentry for the moment.
         if not await self.config.sentry.master_msg_sent():
             self.dont_send_reminders = True
             await self.config.sentry.master_msg_sent.set(True)
