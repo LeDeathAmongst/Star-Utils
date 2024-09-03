@@ -44,7 +44,7 @@ SENTRY_DSN = (
 #   only send 1 DM (or at least that's the plan...)
 #
 # I recommend anyone looking at this also takes a look at the Technical Details section of
-# https://Star-cogs.readthedocs.io/en/latest/repo_telemetry.html
+# https://aaa3a-cogs.readthedocs.io/en/latest/repo_telemetry.html
 #
 # """
 
