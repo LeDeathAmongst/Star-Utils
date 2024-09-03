@@ -89,7 +89,7 @@ class Cog(commands.Cog):
     __authors__: typing.List[str] = ["Star"]
     __version__: float = 1.0
     __commit__: str = ""
-    __repo_name__: str = "Star-Cogs"
+    __repo_name__: str = "StarCogs"
     __utils_version__: float = __utils_version__
 
     # bot: Red
@@ -210,7 +210,7 @@ class Cog(commands.Cog):
             try:
                 async with aiohttp.ClientSession(raise_for_status=True) as session:
                     async with session.get(
-                        f"https://api.counterapi.dev/v1/Star-Cogs/{self.qualified_name}/up"
+                        f"https://api.counterapi.dev/v1/StarCogs/{self.qualified_name}/up"
                     ):
                         pass
             except Exception as e:
@@ -268,7 +268,7 @@ class Cog(commands.Cog):
             text += (
                 "\n**Cog documentation**:"
                 f" http://docs.prismbot.icu\n**Translate"
-                " my cogs**: https://crowdin.com/project/star-cogs/"
+                " my cogs**: https://crowdin.com/project/StarCogs/"
             )
         return text
 
