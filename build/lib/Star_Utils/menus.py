@@ -1,5 +1,3 @@
-# Menu Utilities for Star-Cogs
-
 from redbot.core import commands  # isort:skip
 from redbot.core.bot import Red  # isort:skip
 import discord  # isort:skip

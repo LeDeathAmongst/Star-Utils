@@ -26,13 +26,13 @@ if VERSION is None:
     README_MD_TEXT = """## My utils
 
     Hello there! If you're contributing or taking a look, everything in this folder
-    is synced from a master repo at https://github.com/AAA3A-AAA3A/AAA3A_utils by GitHub Actions -
+    is synced from a master repo at https://github.com/LeDeathAmongst/Star_Utils by GitHub Actions -
     so it's probably best to look/edit there.
 
     ---
 
     Last sync at: {time}
-    Commit: [`{commit}`](https://github.com/AAA3A-AAA3A/AAA3A_utils/commit/{commit})
+    Commit: [`{commit}`](https://github.com/LeDeathAmongst/Star_Utils/commit/{commit})
     """
     readme = README_MD_TEXT.format(
         time=datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S %Z"),
