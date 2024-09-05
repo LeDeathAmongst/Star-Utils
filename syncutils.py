@@ -11,7 +11,7 @@ import git
 from git import Repo
 
 VERSION = 1.1
-BASE_PATH = Path("/root/github")
+BASE_PATH = Path("/root")
 
 if VERSION is None:
     utils_repo_clone_location = BASE_PATH / "Star_Utils_clone_for_sync"
@@ -44,7 +44,7 @@ if VERSION is None:
     with open(utils_location / "commit.json", "w") as fp:
         fp.write(json.dumps({"latest_commit": str(commit)}))
 else:
-    with open(BASE_PATH / "Star_Utils" / "Star_Utils" / "__version__.py", "w") as fp:
+    with open(BASE_PATH / "Star_Utils" /  "Star_Utils" / "__version__.py", "w") as fp:
         fp.write(f"__version__ = {VERSION}\n")
 
 all_cogs = [
