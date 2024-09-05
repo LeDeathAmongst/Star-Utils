@@ -10,9 +10,8 @@ from pathlib import Path
 import git
 from git import Repo
 
-# git -C %USERPROFILE%\Documents\GitHub\AAA3A_utils rev-list HEAD --count AAA3A_utils
-VERSION = 6.8
-BASE_PATH = Path(os.environ["USERPROFILE"]) / "Documents" / "GitHub"
+VERSION = 1.1
+BASE_PATH = Path("/root/github")
 
 if VERSION is None:
     utils_repo_clone_location = BASE_PATH / "Star_Utils_clone_for_sync"
