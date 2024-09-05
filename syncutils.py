@@ -50,7 +50,7 @@ else:
 
 all_cogs = [
     path.name
-    for path in (BASE_PATH / "Star-Cogs").iterdir()
+    for path in (BASE_PATH / "StarCogs").iterdir()
     if (
         path.is_dir()
         and not path.name.startswith((".", "_"))
@@ -60,14 +60,14 @@ all_cogs = [
 cog_folders = [cog.lower() for cog in all_cogs]
 for cog in cog_folders:
     destination = (
-        BASE_PATH / "Star-Cogs" / cog / "Star_Utils"
+        BASE_PATH / "StarCogs" / cog / "Star_Utils"
     )
     if destination.exists():
         shutil.rmtree(destination)
     if VERSION is None:
         shutil.copytree(utils_location, destination)
     else:
-        destination = BASE_PATH / "Star-Cogs" / cog
+        destination = BASE_PATH / "StarCogs" / cog
         with open(destination / "utils_version.json", "w") as fp:
             fp.write(json.dumps({"needed_utils_version": VERSION}))
 
