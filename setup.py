@@ -18,7 +18,7 @@ __version__ = float(
 setuptools.setup(
     name="Star_Utils",
     version=str(__version__),
-    author="Rosie",
+    author="Star",
     author_email=None,
     description="Utils for Star-Cogs.",
     long_description=long_description,
