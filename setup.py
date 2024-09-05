@@ -19,7 +19,7 @@ setuptools.setup(
     name="Star_Utils",
     version=str(__version__),
     author="Star",
-    author_email=None,
+    author_email="skylar.rae.val@proton.me",
     description="Utils for Star-Cogs.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -27,7 +27,6 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: MIT",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.9.1",
