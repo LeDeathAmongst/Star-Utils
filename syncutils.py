@@ -13,7 +13,7 @@ import git
 from git import Repo
 
 VERSION = 1.1
-BASE_PATH = Path("/root/github")
+BASE_PATH = Path("/root")
 
 # Function to modify Python files
 def modify_python_file(file_path):
