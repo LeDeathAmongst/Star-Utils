@@ -17,10 +17,10 @@ BASE_PATH = Path(os.environ["USERPROFILE"]) / "Documents" / "GitHub"
 if VERSION is None:
     utils_repo_clone_location = BASE_PATH / "Star_Utils_clone_for_sync"
     utils_repo = Repo.clone_from(
-        "https://github.com/LeDeathAmongst/Star-Utils.git", utils_repo_clone_location
+        "https://github.com/LeDeathAmongst/Star_Utils.git", utils_repo_clone_location
     )
 
-    utils_location = utils_repo_clone_location / "Star-Utils"
+    utils_location = utils_repo_clone_location / "Star_Utils"
     commit = utils_repo.head.commit
 
     README_MD_TEXT = """## My utils
@@ -45,7 +45,7 @@ if VERSION is None:
     with open(utils_location / "commit.json", "w") as fp:
         fp.write(json.dumps({"latest_commit": str(commit)}))
 else:
-    with open(BASE_PATH / "Star-Utils" / "Star-Utils" / "__version__.py", "w") as fp:
+    with open(BASE_PATH / "Star_Utils" / "Star_Utils" / "__version__.py", "w") as fp:
         fp.write(f"__version__ = {VERSION}\n")
 
 all_cogs = [
@@ -60,7 +60,7 @@ all_cogs = [
 cog_folders = [cog.lower() for cog in all_cogs]
 for cog in cog_folders:
     destination = (
-        BASE_PATH / "Star-Cogs" / cog / "Star-Utils"
+        BASE_PATH / "Star-Cogs" / cog / "Star_Utils"
     )
     if destination.exists():
         shutil.rmtree(destination)
