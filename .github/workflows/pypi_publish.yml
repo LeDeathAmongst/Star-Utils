@@ -32,8 +32,8 @@ jobs:
         pip install build
     - name: Delete existing build artifacts
       run: |
-        rm -rf dist/
-        rm -rf build/
+        rm -r dist/
+        rm -r build/
     - name: Build package
       run: python -m build
     - name: Publish package
