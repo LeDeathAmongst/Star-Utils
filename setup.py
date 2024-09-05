@@ -16,14 +16,14 @@ __version__ = float(
 )
 
 setuptools.setup(
-    name="Star-Utils",
+    name="Star_Utils",
     version=str(__version__),
     author="Rosie",
     author_email=None,
     description="Utils for Star-Cogs.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/LeDeathAmongst/Star-Utils",
+    url="https://github.com/LeDeathAmongst/Star_Utils",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
