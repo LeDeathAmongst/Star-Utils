@@ -17,8 +17,16 @@ BASE_PATH = Path("/root")
 
 # Function to modify Python files
 def modify_python_file(file_path):
-    with open(file_path, 'r') as file:
-        source_code = file.read()
+    # Open the file in binary mode to check for BOM
+    with open(file_path, 'rb') as file:
+        raw_data = file.read()
+
+    # Check for BOM and remove it
+    if raw_data.startswith(b'\xef\xbb\xbf'):
+        raw_data = raw_data[3:]
+
+    # Decode the bytes to a string
+    source_code = raw_data.decode('utf-8')
 
     # Parse the source code into an AST
     tree = ast.parse(source_code)
@@ -46,7 +54,7 @@ def modify_python_file(file_path):
     modified_code = astor.to_source(modified_tree)
 
     # Write the modified code back to the file
-    with open(file_path, 'w') as file:
+    with open(file_path, 'w', encoding='utf-8') as file:
         file.write(modified_code)
 
 # Process the utils and cogs
