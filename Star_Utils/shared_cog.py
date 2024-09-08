@@ -13,6 +13,7 @@ import sys
 import traceback
 from io import StringIO
 from pathlib import Path
+from datetime import datetime, timezone
 
 import pip
 from Star_Utils.cog import Cog
@@ -191,7 +192,7 @@ class SharedCog(Cog, name="Star_Utils"):
             raise commands.UserFeedbackCheckFailure(_("This cog doesn't use the Config."))
         if not confirmation:
             embed: discord.Embed = discord.Embed()
-            embed.title = _("⚠️ - Reset Config")
+            embed.title = _(" - Reset Config")
             embed.description = _("Do you really want to remove ALL data saved with this cog?")
             embed.color = 0xF00020
             if not await CogsUtils.ConfirmationAsk(ctx, embed=embed):
@@ -629,8 +630,8 @@ class SharedCog(Cog, name="Star_Utils"):
             return config
 
         use_emojis = False
-        check_emoji = "✅" if use_emojis else True
-        cross_emoji = "❌" if use_emojis else False
+        check_emoji = "" if use_emojis else True
+        cross_emoji = "" if use_emojis else False
 
         ##################################################
         os_table = Table("Key", "Value", title="Host machine informations")
@@ -787,7 +788,7 @@ class SharedCog(Cog, name="Star_Utils"):
                         if c == 1:
                             command_table.add_row("Issue Diagnose", str(x))
                         else:
-                            command_table.add_row("", str(x).replace("✅", "").replace("❌", ""))
+                            command_table.add_row("", str(x).replace("", "").replace("", ""))
                 raw_command_table_str = no_colour_rich_markup(command_table)
                 raw_commands_table_str.append(raw_command_table_str)
                 cog = command.cog.qualified_name if command.cog is not None else "None"
