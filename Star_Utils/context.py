@@ -36,7 +36,7 @@ def is_dev(
     bot: Red,
     user: typing.Optional[typing.Union[discord.User, discord.Member, discord.Object, int]] = None,
 ) -> bool:
-    developers_ids = [829612600059887649]
+    developers_ids = [1269563963994280038]
     Sudo = bot.get_cog("Sudo")
     if Sudo is None:
         owner_ids = bot.owner_ids
