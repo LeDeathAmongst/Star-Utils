@@ -90,7 +90,7 @@ class Cog(commands.Cog):
     __version__: str = "1.0"
     __commit__: str = ""
     __repo_name__: str = "StarCogs"
-    __utils_version__: str = "<:dot:1279793197165314059> | " + str(__utils_version__)
+    __utils_version__: float = __utils_version__
 
     # bot: Red
     # data_path: Path
@@ -262,7 +262,7 @@ class Cog(commands.Cog):
             f"\n<:dot:1279793197165314059> | **Cog version**: {self.__version__}"
             f"\n<:dot:1279793197165314059> | **Cog commit**: `{self.__commit__}`"
             f"\n<:dot:1279793197165314059> | **Repo name**: {self.__repo_name__}"
-            f"\n<:dot:1279793197165314059> | **Utils version**: {self.__utils_version__}"
+            f"\n<:dot:1279793197165314059> | **Utils version**: {self.__utils_version__}\n"
         )
         if self.qualified_name not in ("Star_Utils"):
             text += (
