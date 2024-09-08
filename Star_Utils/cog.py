@@ -267,7 +267,7 @@ class Cog(commands.Cog):
         if self.qualified_name not in ("Star_Utils"):
             text += (
                 "\n**<:dot:1279793197165314059> | Cog documentation**:"
-                f" <:dot:1279793197165314059> | http://docs.prismbot.icu\n<:dot:1279793197165314059> | **Translate"
+                f"http://docs.prismbot.icu\n<:dot:1279793197165314059> | **Translate"
                 " my cogs**: https://crowdin.com/project/Star-Cogs/\n"
                 "<:dot:1279793197165314059> | **Donate**: https://ko-fi.com/starcogs"
             )
