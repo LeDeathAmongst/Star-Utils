@@ -23,10 +23,8 @@ setattr(commands, "Literal", typing.Literal)
 
 __all__ = ["Settings", "CustomMessageConverter"]
 
-
 def _(untranslated: str) -> str:
     return untranslated
-
 
 def dashboard_page(*args, **kwargs):
     def decorator(func: typing.Callable):
@@ -35,15 +33,10 @@ def dashboard_page(*args, **kwargs):
 
     return decorator
 
-
 def no_colour_rich_markup(
     *objects: typing.Any, lang: str = "", no_box: typing.Optional[bool] = False
 ) -> str:
-    """
-    Slimmed down version of rich_markup which ensure no colours (/ANSI) can exist
-    https://github.com/Cog-Creators/Red-DiscordBot/pull/5538/files (Kowlin)
-    """
-    temp_console = Console(  # Prevent messing with STDOUT's console
+    temp_console = Console(
         color_system=None,
         file=StringIO(),
         force_terminal=True,
@@ -54,9 +47,7 @@ def no_colour_rich_markup(
         return temp_console.file.getvalue()
     return box(temp_console.file.getvalue(), lang=lang)  # type: ignore
 
-
 if not hasattr(discord.utils, "MISSING"):
-
     class _MissingSentinel:
         __slots__ = ()
 
