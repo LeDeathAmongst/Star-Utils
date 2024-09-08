@@ -3,8 +3,6 @@ import redbot  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
-# import typing_extensions  # isort:skip
-
 import asyncio
 import inspect
 import json
@@ -291,6 +289,7 @@ class Settings:
         commands_group: typing.Optional[
             typing.Union[commands.Group, commands.HybridGroup, str]
         ] = None,
+        guild_specific: bool = False,  # New parameter for guild-specific settings
     ) -> None:
         if global_path is None:
             global_path = []
@@ -307,6 +306,7 @@ class Settings:
             str, typing.Union[commands.Command, commands.HybridCommand]
         ] = {}
         self.commands_added: asyncio.Event = asyncio.Event()
+        self.guild_specific: bool = guild_specific  # Store guild-specific flag
         for setting in settings:
             if "path" not in settings[setting]:
                 settings[setting]["path"] = [setting]
@@ -1001,7 +1001,7 @@ class Settings:
                 if not confirmation:
                     embed: discord.Embed = discord.Embed()
                     embed.title = _(
-                        "⚙️ Do you want to replace the entire Config of {cog.qualified_name} with"
+                        " Do you want to replace the entire Config of {cog.qualified_name} with"
                         " what you specified?"
                     ).format(cog=self.cog)
                     if await CogsUtils.ConfirmationAsk(ctx, embed=embed):
@@ -1065,21 +1065,21 @@ class Settings:
         buttons = [
             {
                 "label": "Cancel",
-                "emoji": "✖️",
+                "emoji": "",
                 "style": 4,
                 "disabled": False,
                 "custom_id": "Settings_ModalConfig_cancel",
             },
             {
                 "label": "Save",
-                "emoji": "✅",
+                "emoji": "",
                 "style": 3,
                 "disabled": False,
                 "custom_id": "Settings_ModalConfig_done",
             },
             {
                 "label": "View",
-                "emoji": "🔍",
+                "emoji": "",
                 "style": 1,
                 "disabled": False,
                 "custom_id": "Settings_ModalConfig_view",
@@ -1089,7 +1089,7 @@ class Settings:
             buttons.append(
                 {
                     "label": f"Configure {i}",
-                    "emoji": "⚙️",
+                    "emoji": "",
                     "disabled": False,
                     "custom_id": f"Settings_ModalConfig_configure_{i}",
                 }
@@ -1588,7 +1588,9 @@ class Settings:
             elif self.group == Config.USER:
                 _object = ctx.author
         data = {}
-        if self.group == Config.GLOBAL:
+        if self.guild_specific and isinstance(_object, discord.Guild):
+            data = self.config.guild(_object)
+        elif self.group == Config.GLOBAL:
             data = self.config
         elif self.group == Config.GUILD:
             if isinstance(_object, discord.Guild):
