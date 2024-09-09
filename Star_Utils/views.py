@@ -133,7 +133,7 @@ class Buttons(discord.ui.View):
         check: typing.Optional[typing.Callable] = None,
         function: typing.Optional[typing.Callable] = None,
         function_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None,
-        infinity: typing.Optional[bool] = True,
+        infinity: typing.Optional[bool] = False,
     ) -> None:
         """style: ButtonStyle, label: Optional[str], disabled: bool, custom_id: Optional[str], url: Optional[str], emoji: Optional[Union[str, Emoji, PartialEmoji]], row: Optional[int]"""
         if buttons is None:
@@ -264,7 +264,7 @@ class Dropdown(discord.ui.View):
         check: typing.Optional[typing.Callable] = None,
         function: typing.Optional[typing.Callable] = None,
         function_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None,
-        infinity: typing.Optional[bool] = True,
+        infinity: typing.Optional[bool] = False,
         custom_id: typing.Optional[str] = f"CogsUtils_{generate_key(length=10)}",
     ) -> None:
         """label: str, value: str, description: Optional[str], emoji: Optional[Union[str, Emoji, PartialEmoji]], default: bool"""
