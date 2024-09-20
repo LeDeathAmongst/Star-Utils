@@ -1,3 +1,4 @@
+
 from redbot.core import commands  # isort:skip
 from redbot.core.bot import Red  # isort:skip
 import discord  # isort:skip
@@ -256,24 +257,22 @@ class Cog(commands.Cog):
         """Thanks Simbad!"""
         text = super().format_help_for_context(ctx)
         s = "s" if len(self.__authors__) > 1 else ""
-        text = f"{text}\n\n"
-
-        # Add a separate field for Credits
-        credits = (
-            f"<:dot:1279793197165314059> | **Author{s}**: {humanize_list(self.__authors__)}\n"
-            f"<:dot:1279793197165314059> | **Cog version**: {self.__version__}\n"
-            f"<:dot:1279793197165314059> | **Cog commit**: `{self.__commit__}`\n"
-            f"<:dot:1279793197165314059> | **Repo name**: {self.__repo_name__}\n"
-            f"<:dot:1279793197165314059> | **Utils version**: {self.__utils_version__}\n"
+        text = (
+            f"{text}"
+            f"\n\n<:dot:1279793197165314059> | **Author{s}**: {humanize_list(self.__authors__)}"
+            f"\n<:dot:1279793197165314059> | **Cog version**: {self.__version__}"
+            f"\n<:dot:1279793197165314059> | **Cog commit**: `{self.__commit__}`"
+            f"\n<:dot:1279793197165314059> | **Repo name**: {self.__repo_name__}"
+            f"\n<:dot:1279793197165314059> | **Utils version**: {self.__utils_version__}\n"
         )
-        text += f"**Credits**:\n{credits}\n"
-
         if self.qualified_name not in ("Star_Utils"):
             text += (
-                "<:dot:1279793197165314059> | **Cog documentation**: http://docs.prismbot.icu\n"
-                "<:dot:1279793197165314059> | **Translate my cogs**: https://crowdin.com/project/Star-Cogs/\n"
+                "\n**<:dot:1279793197165314059> | Cog documentation**:"
+                f" http://docs.prismbot.icu\n<:dot:1279793197165314059> | **Translate"
+                " my cogs**: https://crowdin.com/project/Star-Cogs/\n"
                 "<:dot:1279793197165314059> | **Donate**: https://ko-fi.com/starcogs"
             )
+        return text
 
     async def red_delete_data_for_user(self, *args, **kwargs) -> None:
         """Nothing to delete."""
