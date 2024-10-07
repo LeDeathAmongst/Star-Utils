@@ -372,14 +372,14 @@ class CogsUtils:
             await cog.CC_added.wait()
         for _object in cog.walk_commands():
             if isinstance(_object, (commands.HybridCommand, commands.HybridGroup)):
-                if _object.app_command is not None:
-                    _object.app_command.description = _object.app_command.description.split("\n")[
-                        0
-                    ][:100]
+                if _object.app_command is not None and not isinstance(_object.app_command, _MissingSentinel):
+                    # Ensure the object is not a _MissingSentinel before accessing its attributes
+                    _object.app_command.description = _object.app_command.description.split("\n")[0][:100]
+                else:
+                    cog.logger.warning(f"Command {_object.name} has an uninitialized app_command.")
                 if _object.parent is not None and not _object.parent.invoke_without_command:
                     _object.checks.extend(_object.parent.checks)
         await bot.tree.red_check_enabled()
-
     @classmethod
     async def ConfirmationAsk(
         cls,
