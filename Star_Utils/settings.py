@@ -1056,21 +1056,21 @@ class Settings:
         buttons = [
             {
                 "label": "Cancel",
-                "emoji": "",
+                "emoji": "<a:Wrong:1279793195953295454>",
                 "style": 4,
                 "disabled": False,
                 "custom_id": "Settings_ModalConfig_cancel",
             },
             {
                 "label": "Save",
-                "emoji": "",
+                "emoji": "<a:Tick:1279793194149875753>",
                 "style": 3,
                 "disabled": False,
                 "custom_id": "Settings_ModalConfig_done",
             },
             {
                 "label": "View",
-                "emoji": "",
+                "emoji": "<:preview:1292974736883585186>",
                 "style": 1,
                 "disabled": False,
                 "custom_id": "Settings_ModalConfig_view",
@@ -1080,7 +1080,7 @@ class Settings:
             buttons.append(
                 {
                     "label": f"Configure {i}",
-                    "emoji": "",
+                    "emoji": "<:config:1292974979834576958>",
                     "disabled": False,
                     "custom_id": f"Settings_ModalConfig_configure_{i}",
                 }
