@@ -115,14 +115,14 @@ class CogsUtils:
         if name is not None and cog is None:
             return (
                 logging.getLogger(name)
-                if name.startswith("red.")
-                else logging.getLogger(f"red.StarCogs.{name}")
+                if name.startswith("star.")
+                else logging.getLogger(f"star.StarCogs.{name}")
             )
 
         logger = (
-            logging.getLogger(f"red.{cog.__repo_name__}.{cog.qualified_name}")
+            logging.getLogger(f"star.{cog.__repo_name__}.{cog.qualified_name}")
             if name is None
-            else logging.getLogger(f"red.{cog.__repo_name__}.{cog.qualified_name}.{name}")
+            else logging.getLogger(f"star.{cog.__repo_name__}.{cog.qualified_name}.{name}")
         )
 
         __log = partial(logging.Logger._log, logger)
