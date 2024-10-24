@@ -188,7 +188,7 @@ async def unsupported(ctx: commands.Context) -> None:
 
 class Cog(commands.Cog):
     __authors__: typing.List[str] = ["Star"]
-    __version__: str = "1.0"
+    __version__: float = 1.0
     __commit__: str = ""
     __repo_name__: str = "StarCogs"
     __utils_version__: float = __utils_version__
