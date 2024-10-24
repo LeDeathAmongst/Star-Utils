@@ -1,4 +1,3 @@
-
 from redbot.core import commands  # isort:skip
 from redbot.core.bot import Red  # isort:skip
 import discord  # isort:skip
@@ -26,6 +25,7 @@ SharedCog: commands.Cog = None
 
 __all__ = ["Cog"]
 
+DOT = discord.PartialEmoji(name="dot", id=1279793197165314059, animated=False)
 
 def _(untranslated: str) -> str:
     return untranslated
@@ -259,18 +259,18 @@ class Cog(commands.Cog):
         s = "s" if len(self.__authors__) > 1 else ""
         text = (
             f"{text}"
-            f"\n\n<:dot:1279793197165314059> | **Author{s}**: {humanize_list(self.__authors__)}"
-            f"\n<:dot:1279793197165314059> | **Cog version**: {self.__version__}"
-            f"\n<:dot:1279793197165314059> | **Cog commit**: `{self.__commit__}`"
-            f"\n<:dot:1279793197165314059> | **Repo name**: {self.__repo_name__}"
-            f"\n<:dot:1279793197165314059> | **Utils version**: {self.__utils_version__}\n"
+            f"\n{DOT} | **Author{s}**: {humanize_list(self.__authors__)}"
+            f"\n{DOT} | **Cog version**: {self.__version__}"
+            f"\n{DOT} | **Cog commit**: `{self.__commit__}`"
+            f"\n{DOT} | **Repo name**: {self.__repo_name__}"
+            f"\n{DOT} | **Utils version**: {self.__utils_version__}"
         )
         if self.qualified_name not in ("Star_Utils"):
             text += (
-                "\n**<:dot:1279793197165314059> | Cog documentation**:"
-                f" http://docs.prismbot.icu\n<:dot:1279793197165314059> | **Translate"
-                " my cogs**: https://crowdin.com/project/Star-Cogs/\n"
-                "<:dot:1279793197165314059> | **Donate**: https://ko-fi.com/starcogs"
+                f"\n{DOT} | **Cog documentation**: https://docs.prismbot.icu"
+                f"\n{DOT} | **Translate my cogs**: https://crowdin.com/project/Star-Cogs"
+                f"\n{DOT} | **Donate**: https://ko-fi.com/starcogs"
+                f"\n{DOT} | **Support Server**: https://discord.gg/ggQ7GcPm7P"
             )
         return text
 
