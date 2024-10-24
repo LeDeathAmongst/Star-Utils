@@ -386,7 +386,7 @@ class Settings:
 
         class ProfileConverter(commands.Converter):
             async def convert(_self, ctx: commands.Context, argument: str):
-                if len(argument) > 10:
+                if len(argument) > 20:
                     raise commands.BadArgument(_("This profile does not exist."))
                 if self.group == Config.GLOBAL:
                     _object = None
@@ -714,7 +714,7 @@ class Settings:
                 raise commands.UserFeedbackCheckFailure(_("This profile don't exist."))
 
     async def add_profile(self, ctx: commands.Context, profile: str) -> None:
-        if len(profile) > 10:
+        if len(profile) > 20:
             raise commands.UserFeedbackCheckFailure(
                 _("The name of a profile must be less than or equal to 10 characters.")
             )
@@ -729,9 +729,9 @@ class Settings:
         )
 
     async def clone_profile(self, ctx: commands.Context, old_profile: str, profile: str) -> None:
-        if len(profile) > 10:
+        if len(profile) > 20:
             raise commands.UserFeedbackCheckFailure(
-                _("The name of a profile must be less than or equal to 10 characters.")
+                _("The name of a profile must be less than or equal to 20 characters.")
             )
         data = self.get_data(ctx=ctx)
         profiles = await data.get_raw(*self.global_path)
@@ -774,9 +774,9 @@ class Settings:
             await self.cog.config.guild(ctx.guild).tickets.set(data)
 
     async def rename_profile(self, ctx: commands.Context, old_profile: str, profile: str) -> None:
-        if len(profile) > 10:
+        if len(profile) > 20:
             raise commands.UserFeedbackCheckFailure(
-                _("The name of a profile must be less than or equal to 10 characters.")
+                _("The name of a profile must be less than or equal to 20 characters.")
             )
         data = self.get_data(ctx=ctx)
         profiles = await data.get_raw(*self.global_path)
@@ -1175,7 +1175,7 @@ class Settings:
                         _("Profile Name:"),
                         validators=[
                             wtforms.validators.InputRequired(),
-                            wtforms.validators.Length(min=1, max=10),
+                            wtforms.validators.Length(min=1, max=20),
                             ProfileNameCheck(),
                         ],
                     )
