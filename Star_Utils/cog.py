@@ -26,11 +26,6 @@ SharedCog: commands.Cog = None
 __all__ = ["Cog"]
 
 DOT = discord.PartialEmoji(name="dot", id=1279793197165314059, animated=False)
-DOCS = f"<:dot:1279793197165314059> | **Cog documentation**: https://docs.prismbot.icu/en/latest/{self.qualified_name.lower()}.html"
-TRANSLATE = "<:dot:1279793197165314059> | **Translate my cogs**: https://crowdin.com/project/Star-Cogs"
-DONATE = "<:dot:1279793197165314059> | **Donate**: https://ko-fi.com/starcogs"
-SS = "<:dot:1279793197165314059> | **Support Server**: https://discord.gg/ggQ7GcPm7P"
-
 
 def _(untranslated: str) -> str:
     return untranslated
@@ -271,10 +266,10 @@ class Cog(commands.Cog):
         )
         if self.qualified_name not in ("Star_Utils"):
             text += (
-                f"\n{DOCS}"
-                f"\n{TRANSLATE}"
-                f"\n{DONATE}"
-                f"\n{SS}"
+                f"\n {DOT} | **Cog documentation**: https://docs.prismbot.icu/en/latest/{self.qualified_name.lower()}.html"
+                f"\n{DOT} | **Translate my cogs**: https://crowdin.com/project/Star-Cogs"
+                f"\n{DOT} | **Donate**: https://ko-fi.com/starcogs"
+                f"\n{DOT | **Support Server**: https://discord.gg/ggQ7GcPm7P"
             )
         return text
 
