@@ -269,7 +269,7 @@ class Cog(commands.Cog):
                 f"\n {DOT} | **Cog documentation**: https://docs.prismbot.icu/en/latest/{self.qualified_name.lower()}.html"
                 f"\n{DOT} | **Translate my cogs**: https://crowdin.com/project/Star-Cogs"
                 f"\n{DOT} | **Donate**: https://ko-fi.com/starcogs"
-                f"\n{DOT | **Support Server**: https://discord.gg/ggQ7GcPm7P"
+                f"\n{DOT} | **Support Server**: https://discord.gg/ggQ7GcPm7P"
             )
         return text
 
