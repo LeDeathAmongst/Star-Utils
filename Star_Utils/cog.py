@@ -267,7 +267,7 @@ class Cog(commands.Cog):
             f"\n{DOT} | **Cog version**: {self.__version__}"
             f"\n{DOT} | **Cog commit**: `{self.__commit__}`"
             f"\n{DOT} | **Repo name**: {self.__repo_name__}"
-            f"\n{DOT} | **Utils version**: {self.__utils_version__}"
+            f"\n{DOT} | **Utils version**: {self.__utils_version__}\n\n"
         )
         if self.qualified_name not in ("Star_Utils"):
             text += (
