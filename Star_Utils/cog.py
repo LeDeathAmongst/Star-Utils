@@ -65,6 +65,106 @@ def _(untranslated: str) -> str:
 #                 continue
 #             setattr(cog, attr, getattr(self, attr))
 
+async def format_info(
+    ctx: commands.Context,
+    qualified_name: str,
+    cog_version: str,
+    extras: dict[str, str | bool] = {},
+    loops: list[Loop] = [],
+) -> str:
+    """Generate simple info text about the cog. **Not** currently for use outside my cogs.
+
+    Parameters
+    ----------
+    ctx : commands.Context
+        Context
+    qualified_name : str
+        The name you want to show, eg "BetterUptime"
+    cog_version : str
+        The version of the cog
+    extras : Dict[str, Union[str, bool]], optional
+        Dict which is foramtted as key: value\\n. Bools as a value will be replaced with
+        check/cross emojis, by default {}
+    loops : List[VexLoop], optional
+        List of VexLoops you want to show, by default []
+
+    Returns
+    -------
+    str
+        Simple info text.
+    """
+    cog_name = qualified_name.lower()
+    current = _get_current_vers(cog_version, qualified_name)
+    try:
+        latest = await _get_latest_vers(cog_name)
+
+        cog_updated = current.cog >= latest.cog
+        utils_updated = current.utils == latest.utils
+        red_updated = current.red >= latest.red
+    except Exception:  # anything and everything, eg aiohttp error or version parsing error
+        log.warning("Unable to parse versions.", exc_info=True)
+        cog_updated, utils_updated, red_updated = "Unknown", "Unknown", "Unknown"
+        latest = UnknownVers()
+
+    start = f"{qualified_name} by Star. \nhttps://https://github.com/LeDeathAmongst/StarCogs\n\n"
+
+    main_table = Table(
+        "", "Current", "Latest", "Up to date?", title="Versions", box=rich_box.MINIMAL
+    )
+
+    main_table.add_row(
+        "This Cog",
+        str(current.cog),
+        str(latest.cog),
+        GREEN_CIRCLE if cog_updated else RED_CIRCLE,
+    )
+    main_table.add_row(
+        "Bundled Utils",
+        current.utils,
+        latest.utils,
+        GREEN_CIRCLE if utils_updated else RED_CIRCLE,
+    )
+    main_table.add_row(
+        "Red",
+        str(current.red),
+        str(latest.red),
+        GREEN_CIRCLE if red_updated else RED_CIRCLE,
+    )
+
+    update_msg = "\n"
+    if not cog_updated:
+        update_msg += f"To update this cog, use the `{ctx.clean_prefix}cog update` command.\n"
+    if not utils_updated:
+        update_msg += (
+            f"To update the bundled utils, use the `{ctx.clean_prefix}cog update` command.\n"
+        )
+    if not red_updated:
+        update_msg += "To update Red, see https://docs.discord.red/en/stable/update_red.html\n"
+
+    extra_table = Table("Key", "Value", title="Extras", box=rich_box.MINIMAL)
+
+    data = []
+    if loops:
+        for loop in loops:
+            extra_table.add_row(loop.friendly_name, GREEN_CIRCLE if loop.integrity else RED_CIRCLE)
+
+    if extras:
+        if data:
+            extra_table.add_row("", "")
+        for key, value in extras.items():
+            if isinstance(value, bool):
+                str_value = GREEN_CIRCLE if value else RED_CIRCLE
+            else:
+                assert isinstance(value, str)
+                str_value = value
+            extra_table.add_row(key, str_value)
+
+    boxed = no_colour_rich_markup(main_table)
+    boxed += update_msg
+    if loops or extras:
+        boxed += no_colour_rich_markup(extra_table)
+
+    return f"{start}{boxed}"
 
 async def unsupported(ctx: commands.Context) -> None:
     """Thanks to Vexed for this (https://github.com/Vexed01/Vex-Cogs/blob/master/status/commands/statusdev_com.py#L33-L56)."""
