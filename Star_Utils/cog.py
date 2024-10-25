@@ -258,18 +258,18 @@ class Cog(commands.Cog):
         s = "s" if len(self.__authors__) > 1 else ""
         text = (
             f"{text}"
-            f"\n{DOT} | **Author{s}**: {humanize_list(self.__authors__)}"
-            f"\n{DOT} | **Cog version**: {self.__version__}"
-            f"\n{DOT} | **Cog commit**: `{self.__commit__}`"
-            f"\n{DOT} | **Repo name**: {self.__repo_name__}"
-            f"\n{DOT} | **Utils version**: {self.__utils_version__}\n"
+            f"\n{DOT} | Author{s}: {humanize_list(self.__authors__)}"
+            f"\n{DOT} | Cog version: {self.__version__}"
+            f"\n{DOT} | Cog commit: `{self.__commit__}`"
+            f"\n{DOT} | Repo name: {self.__repo_name__}"
+            f"\n{DOT} | Utils version: {self.__utils_version__}\n"
         )
         if self.qualified_name not in ("Star_Utils"):
             text += (
-                f"\n{DOT} | **Cog documentation**: https://docs.prismbot.icu/en/latest/cog_{self.qualified_name.lower()}.html"
-                f"\n{DOT} | **Translate my cogs**: https://crowdin.com/project/Star-Cogs"
-                f"\n{DOT} | **Donate**: https://ko-fi.com/starcogs"
-                f"\n{DOT} | **Support Server**: https://discord.gg/ggQ7GcPm7P"
+                f"\n{DOT} | Cog documentation: https://docs.prismbot.icu/en/latest/cog_{self.qualified_name.lower()}.html"
+                f"\n{DOT} | Translate my cogs: https://crowdin.com/project/Star-Cogs"
+                f"\n{DOT} | Donate: https://ko-fi.com/starcogs"
+                f"\n{DOT} | Support Server: https://discord.gg/ggQ7GcPm7P"
             )
         return text
 
