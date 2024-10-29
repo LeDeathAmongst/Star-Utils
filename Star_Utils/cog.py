@@ -13,7 +13,7 @@ from uuid import uuid4
 
 import aiohttp
 from redbot.core.data_manager import cog_data_path
-from redbot.core.utils.chat_formatting import humanize_list, inline, warning
+from redbot.core.utils.chat_formatting import humanize_list, inline, warning, bold
 
 from .__version__ import __version__ as __utils_version__
 from .cogsutils import CogsUtils
@@ -256,7 +256,7 @@ class Cog(commands.Cog):
         """Thanks Simbad!"""
         text = super().format_help_for_context(ctx)
         s = "s" if len(self.__authors__) > 1 else ""
-        text = (
+        text = bold(
             f"{text}"
             f"\n{DOT} | Author{s}: {humanize_list(self.__authors__)}"
             f"\n{DOT} | Cog version: {self.__version__}"
@@ -265,7 +265,7 @@ class Cog(commands.Cog):
             f"\n{DOT} | Utils version: {self.__utils_version__}\n"
         )
         if self.qualified_name not in ("Star_Utils"):
-            text += (
+            text += bold(
                 f"\n{DOT} | Cog documentation: https://docs.prismbot.icu/en/latest/cog_{self.qualified_name.lower()}.html"
                 f"\n{DOT} | Translate my cogs: https://crowdin.com/project/Star-Cogs"
                 f"\n{DOT} | Donate: https://ko-fi.com/starcogs"
