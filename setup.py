@@ -16,7 +16,7 @@ __version__ = float(
 )
 
 setuptools.setup(
-    name="Star_Utils",
+    name="Starry_Utils",
     version=str(__version__),
     author="Star",
     author_email="skylar.rae.val@proton.me",
