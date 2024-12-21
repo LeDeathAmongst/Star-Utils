@@ -7,7 +7,7 @@ with open("README.md", mode="r") as f:
     long_description = f.read()
 
 with open(
-    os.path.join(os.path.join(os.path.dirname(__file__), "Star_Utils"), "__version__.py"),
+    os.path.join(os.path.join(os.path.dirname(__file__), "StarUtils"), "__version__.py"),
     mode="r",
 ) as file:
     content = file.read()
@@ -16,14 +16,14 @@ __version__ = float(
 )
 
 setuptools.setup(
-    name="Starry_Utils",
+    name="Star-Utils",
     version=str(__version__),
     author="Star",
     author_email="skylar.rae.val@proton.me",
     description="Utils for Star-Cogs.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/LeDeathAmongst/Star_Utils",
+    url="https://github.com/LeDeathAmongst/Star-Utils",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
