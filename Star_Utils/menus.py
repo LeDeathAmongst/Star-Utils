@@ -1,7 +1,7 @@
 # Menu Utilities for Star-Cogs
 
-from redbot.core import commands  # isort:skip
-from redbot.core.bot import Red  # isort:skip
+from starbot.core import commands  # isort:skip
+from starbot.core.bot import Red  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
@@ -9,10 +9,10 @@ import asyncio
 import re
 
 from colorama import Fore
-from redbot.core.utils.chat_formatting import box, pagify, text_to_file
-from redbot.core.utils.menus import start_adding_reactions
-from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
-from redbot.vendored.discord.ext import menus
+from starbot.core.utils.chat_formatting import box, pagify, text_to_file
+from starbot.core.utils.menus import start_adding_reactions
+from starbot.core.utils.predicates import MessagePredicate, ReactionPredicate
+from starbot.vendored.discord.ext import menus
 
 from .cogsutils import CogsUtils
 

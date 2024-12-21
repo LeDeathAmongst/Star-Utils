@@ -1,6 +1,6 @@
-from redbot.core import commands  # isort:skip
-from redbot.core.bot import Red  # isort:skip
-from redbot.core import Config  # isort:skip
+from starbot.core import commands  # isort:skip
+from starbot.core.bot import Red  # isort:skip
+from starbot.core import Config  # isort:skip
 import typing  # isort:skip
 import discord  # isort:skip
 
@@ -9,8 +9,8 @@ import re
 from uuid import uuid4
 
 import sentry_sdk
-from redbot.core import __version__ as red_version
-from redbot.core.utils.common_filters import INVITE_URL_RE
+from starbot.core import __version__ as red_version
+from starbot.core.utils.common_filters import INVITE_URL_RE
 
 from .cogsutils import CogsUtils
 from .loop import Loop

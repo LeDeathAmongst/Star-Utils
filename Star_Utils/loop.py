@@ -1,4 +1,4 @@
-from redbot.core import commands  # isort:skip
+from starbot.core import commands  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
@@ -12,7 +12,7 @@ import time
 import traceback
 from io import StringIO
 
-from redbot.core.utils.chat_formatting import box, pagify
+from starbot.core.utils.chat_formatting import box, pagify
 from rich.console import Console
 from rich.table import Table
 

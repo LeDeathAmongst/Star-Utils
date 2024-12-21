@@ -26,4 +26,4 @@
     multi_line_output = 7
     order_by_type = true
     sections = ["FUTURE","STDLIB","FIRSTPARTY","THIRDPARTY","LOCALFOLDER"]
-    known_third_party = ["discord", "redbot"]
+    known_third_party = ["discord", "starbot"]

@@ -1,5 +1,5 @@
-from redbot.core import commands  # isort:skip
-import redbot  # isort:skip
+from starbot.core import commands  # isort:skip
+import starbot  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
@@ -9,9 +9,9 @@ import json
 from copy import deepcopy
 from io import StringIO
 
-from redbot.core import Config
-from redbot.core.bot import Red
-from redbot.core.utils.chat_formatting import box
+from starbot.core import Config
+from starbot.core.bot import Red
+from starbot.core.utils.chat_formatting import box
 from rich.console import Console
 from rich.table import Table
 
@@ -1568,7 +1568,7 @@ class Settings:
             ]
         ] = None,
         ctx: typing.Optional[commands.Context] = None,
-    ) -> redbot.core.config.Group:
+    ) -> starbot.core.config.Group:
         if _object is None and ctx is not None:
             if self.group == Config.GLOBAL:
                 _object = None

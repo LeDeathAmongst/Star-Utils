@@ -1,11 +1,11 @@
-from redbot.core import commands  # isort:skip
-from redbot.core.bot import Red  # isort:skip
+from starbot.core import commands  # isort:skip
+from starbot.core.bot import Red  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
 import random
 
-from redbot.core.utils import can_user_react_in
+from starbot.core.utils import can_user_react_in
 
 from .cogsutils import CogsUtils
 from .menus import Menu

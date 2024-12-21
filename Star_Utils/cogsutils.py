@@ -1,5 +1,5 @@
-from redbot.core import commands  # isort:skip
-from redbot.core.bot import Red  # isort:skip
+from starbot.core import commands  # isort:skip
+from starbot.core.bot import Red  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
@@ -17,8 +17,8 @@ from pathlib import Path
 from random import choice
 
 import aiohttp
-from redbot.core.utils.chat_formatting import humanize_list
-from redbot.logging import RotatingFileHandler
+from starbot.core.utils.chat_formatting import humanize_list
+from starbot.logging import RotatingFileHandler
 
 from .views import ConfirmationAskView
 
@@ -54,7 +54,7 @@ class CogsUtils:
     @property
     def is_dpy2(self) -> bool:
         """
-        Returns `True` if the current redbot instance is running under dpy2.
+        Returns `True` if the current starbot instance is running under dpy2.
         """
         return discord.version_info.major >= 2
 
@@ -214,7 +214,7 @@ class CogsUtils:
         if await bot._cog_mgr.find_cog(cog_name) is None:
             raise ValueError("This cog was not found in any cog path.")
 
-        from redbot.cogs.downloader.repo_manager import ProcessFormatter, Repo
+        from starbot.cogs.downloader.repo_manager import ProcessFormatter, Repo
 
         repo = None
         path = Path(inspect.getsourcefile(cog.__class__))

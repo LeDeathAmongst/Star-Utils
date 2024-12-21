@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: redbot",
+            "name": "Python: starbot",
             "type": "python",
             "request": "launch",
-            "module": "redbot",
+            "module": "starbot",
             "args": [
                 "DEFAULT",
                 "--dev",

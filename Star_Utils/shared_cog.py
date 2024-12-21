@@ -1,6 +1,6 @@
-from redbot.core import commands  # isort:skip
-from redbot.core.bot import Red  # isort:skip
-from redbot.core import Config  # isort:skip
+from starbot.core import commands  # isort:skip
+from starbot.core.bot import Red  # isort:skip
+from starbot.core import Config  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
@@ -17,12 +17,12 @@ from datetime import datetime, timezone
 
 import pip
 from Star_Utils.cog import Cog
-from redbot import version_info as red_version_info
-from redbot.cogs.downloader.converters import InstalledCog
-from redbot.cogs.downloader.repo_manager import Repo
-from redbot.core import data_manager
-from redbot.core._diagnoser import IssueDiagnoser
-from redbot.core.utils.chat_formatting import (
+from starbot import version_info as red_version_info
+from starbot.cogs.downloader.converters import InstalledCog
+from starbot.cogs.downloader.repo_manager import Repo
+from starbot.core import data_manager
+from starbot.core._diagnoser import IssueDiagnoser
+from starbot.core.utils.chat_formatting import (
     bold,
     box,
     humanize_timedelta,

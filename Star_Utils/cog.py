@@ -1,5 +1,5 @@
-from redbot.core import commands  # isort:skip
-from redbot.core.bot import Red  # isort:skip
+from starbot.core import commands  # isort:skip
+from starbot.core.bot import Red  # isort:skip
 import discord  # isort:skip
 import typing  # isort:skip
 
@@ -12,8 +12,8 @@ from pathlib import Path
 from uuid import uuid4
 
 import aiohttp
-from redbot.core.data_manager import cog_data_path
-from redbot.core.utils.chat_formatting import humanize_list, inline, warning, bold
+from starbot.core.data_manager import cog_data_path
+from starbot.core.utils.chat_formatting import humanize_list, inline, warning, bold
 
 from .__version__ import __version__ as __utils_version__
 from .cogsutils import CogsUtils
